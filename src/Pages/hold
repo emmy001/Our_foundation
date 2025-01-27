@@ -1,0 +1,24 @@
+// src/pages/index1.js
+import React from 'react';
+import {Box, ChakraProvider} from '@chakra-ui/react';
+import ImageBackground from '../components/Background'; // Adjust path as needed
+import StyledBox from '../components/StyledBox'; // Adjust path as needed
+import Container1 from '../Pages/Home/Container1';
+import Container2 from '../Pages/Home/Container2';
+
+export default function Home() {
+  return (
+    <ChakraProvider>
+      <Box position="fixed" top={0} left={0} width="100%" height="100%" zIndex={-1}>
+            <ImageBackground />
+      </Box>
+        <StyledBox>
+          {/* First Container */}
+          <Container1 />
+
+          {/* Second Container */}
+          <Container2 />
+        </StyledBox>
+    </ChakraProvider>
+  );
+}
