@@ -3,10 +3,10 @@ import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import ImageBackground from '../components/Background'; // Adjust path as needed
 import StyledBox from '../components/StyledBox'; // Adjust path as needed
-import Container1 from '../Pages/Home/Container1';
-import Container2 from '../Pages/Home/Container2';
+import Container1 from './/Home/Container1';
+import Container2 from './/Home/Container2';
 
-const History=()=> {
+const Contact=()=> {
     return (
         <ChakraProvider>
             <ImageBackground>
@@ -21,4 +21,4 @@ const History=()=> {
         </ChakraProvider>
     );
 };
-export default History;
+export default Contact;

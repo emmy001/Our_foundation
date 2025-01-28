@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavigationBar from './Components/Header/Navigation'; // NavigationBar handles the navigation
-import Index from './Pages';
-import EditProfile from "./Pages/editProfile";
+import Index from './pages';
+import EditProfile from "./pages/editProfile";
 import Auth from "./Components/Modal/Auth";
 
 function App(){
