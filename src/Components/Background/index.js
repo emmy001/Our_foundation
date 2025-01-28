@@ -7,9 +7,9 @@ const ImageBackground = ({ children }) => {
     <Box
       width="100vw"
       height="100vh"
-      //backgroundImage="url('/images/001bg.png')"
+      backgroundImage="url('/images/002bg.png')"
       //backgroundColor="black.900" // Replace with your desired color
-      backgroundColor="#000000" // Black in hex
+      //backgroundColor="#000000" // Black in hex
       //backgroundColor="rgb(0, 0, 0)" // Black in RGB
       backgroundSize="cover"
       backgroundPosition="center"
