@@ -40,13 +40,13 @@ const ProfileHeader = () => {
     >
       {/* Profile Section with Menu */}
       <Flex align="center" width="100%">
-        <Image src="/logo/profile001.svg" alt="001" boxSize={['20px', '20px', '62px']} />
+        <Image src="/logo/profile001.svg" alt="001" boxSize={['15px', '15px', '62px']} />
 
         {/* Menu Icon */}
         <Image
           src="/icons/menu.svg"
           alt="Menu"
-          boxSize={['20px', '20px', '40px']}
+          boxSize={['15px', '15px', '40px']}
           ml={['50px', '70px', '100px']}
           mr={['20px', '50px', '0']}
           cursor="pointer" // Adds pointer cursor
