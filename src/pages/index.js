@@ -50,7 +50,7 @@ const Index=()=> {
                             {/*name*/}
                             <ProfileName>Bernard Okuku</ProfileName>
                             <Flex
-                                pl="50px"
+                                //pl="50px"
                             >
 
                                 {/*occupation*/}
