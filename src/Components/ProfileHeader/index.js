@@ -40,7 +40,7 @@ const ProfileHeader = () => {
     >
       {/* Profile Section with Menu */}
       <Flex align="center" width="100%">
-        <Image src="/logo/profile001.svg" alt="001" boxSize={['15px', '15px', '62px']} />
+        <Image src="/logo/profile001.svg" alt="001" boxSize={['20px', '20px', '58px']} />
 
         {/* Menu Icon */}
         <Image
