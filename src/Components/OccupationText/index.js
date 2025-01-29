@@ -5,7 +5,8 @@ const OccupationText = ({ children }) => {
   return (
     <Text
       fontFamily="'Magra', sans-serif"  // Apply Magra font
-      fontSize="36px"  // Set font size to 36px
+      //fontSize="36px"
+      fontSize={['20px', '20px', '36px']}  // Set font size to 36px
       fontWeight="400"  // Regular weight
       color="white"  // Set text color
     >
