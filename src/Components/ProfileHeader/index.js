@@ -46,7 +46,7 @@ const ProfileHeader = () => {
         <Image
           src="/icons/menu.svg"
           alt="Menu"
-          boxSize={['40px', '45px', '40px']}
+          boxSize={['20px', '20px', '40px']}
           ml={['50px', '70px', '100px']}
           mr={['20px', '50px', '0']}
           cursor="pointer" // Adds pointer cursor
