@@ -56,7 +56,7 @@ const ProfileHeader = () => {
 
       {/* Search Icon */}
       <Box>
-        <Image src="/icons/search.svg" alt="Search" boxSize={['20px', '45px', '30px']} />
+        <Image src="/icons/search.svg" alt="Search" boxSize={['20px', '20px', '30px']} />
       </Box>
 
       {/* Modal for Login/Registration */}
