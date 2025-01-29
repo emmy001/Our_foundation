@@ -5,7 +5,7 @@ const ProfileName = ({ children }) => {
   return (
     <Text
       fontFamily="'Lovers Quarrel', cursive" // Apply Lovers Quarrel font
-      fontSize={['20px', '40px', '80px']}    // Responsive font sizes (mobile, tablet, desktop)
+      fontSize={['30px', '40px', '80px']}    // Responsive font sizes (mobile, tablet, desktop)
       color="white"                          // Text color, change as needed
     >
       {children}
