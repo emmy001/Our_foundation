@@ -51,7 +51,7 @@ const About = () => {
       author: "Hezbon Ajwang",
       role: "Kenyan Ambassador ",
       image:
-        "https://public.readdy.ai/ai/img_res/3ee4df5c93026efeb09cded9a10bee0c.jpg",
+        "images/Hezbon.jpg",
     },
     {
       quote:
