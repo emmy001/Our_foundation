@@ -146,20 +146,20 @@ const About = () => {
             <Link href="/" color="gray.600" _hover={{ color: "rose.500" }}>
               Home
             </Link>
-            <Link href="#" color="rose.500">
+            <Link href="about" color="rose.500">
               About
             </Link>
             <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
               Programs
             </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
+            <Link href="/impact" color="gray.600" _hover={{ color: "rose.500" }}>
               Impact
             </Link>
             <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
               Contact
             </Link>
           </Flex>
-          <Button colorScheme="rose" px={6} py={2}>
+          <Button href="/donate" colorScheme="rose" px={6} py={2}>
             Donate Now
           </Button>
         </Flex>
@@ -384,7 +384,7 @@ const About = () => {
               </Heading>
               <List spacing={2}>
                 <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
+                  <Link href="/about" color="gray.400" _hover={{ color: "white" }}>
                     About Us
                   </Link>
                 </ListItem>
