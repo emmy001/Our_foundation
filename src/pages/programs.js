@@ -30,6 +30,7 @@ import {
   FaTwitter,
   FaInstagram,
   FaLinkedin,
+  FaArrowRight, // Added FaArrowRight
 } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/pagination";
