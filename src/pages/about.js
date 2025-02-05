@@ -48,24 +48,32 @@ const About = () => {
     {
       quote:
         "The Foundation's support transformed our community. Their dedication to sustainable development has created lasting change.",
-      author: "Emily Richardson",
-      role: "Community Leader",
+      author: "Hezbon Ajwang",
+      role: "Kenyan Ambassador ",
       image:
         "https://public.readdy.ai/ai/img_res/3ee4df5c93026efeb09cded9a10bee0c.jpg",
     },
     {
       quote:
         "Working with Hope Foundation opened doors for countless young people. Their approach to education is truly revolutionary.",
-      author: "Michael Thompson",
-      role: "Education Director",
+      author: "Austine Ajwang",
+      role: "CTO AWOLS",
       image:
         "https://public.readdy.ai/ai/img_res/335ae380db18042101b8d9c32118873d.jpg",
     },
     {
       quote:
         "The impact of their healthcare initiatives in rural areas has been remarkable. They've set new standards in humanitarian aid.",
-      author: "Dr. Amanda Chen",
-      role: "Healthcare Partner",
+      author: "Beryl Ajwang",
+      role: "Lead Engineer",
+      image:
+        "https://public.readdy.ai/ai/img_res/37470afba6e9282bed1841de5e2fdb88.jpg",
+    },
+    {
+      quote:
+        "The impact of their healthcare initiatives in rural areas has been remarkable. They've set new standards in humanitarian aid.",
+      author: "Juliet Ajwang",
+      role: "Professor University of Telaviv",
       image:
         "https://public.readdy.ai/ai/img_res/37470afba6e9282bed1841de5e2fdb88.jpg",
     },
