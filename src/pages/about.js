@@ -59,7 +59,7 @@ const About = () => {
       author: "Austine Ajwang",
       role: "CTO AWOLS",
       image:
-        "https://public.readdy.ai/ai/img_res/335ae380db18042101b8d9c32118873d.jpg",
+        "images/Austine.jpg",
     },
     {
       quote:
@@ -67,7 +67,7 @@ const About = () => {
       author: "Beryl Ajwang",
       role: "Lead Engineer",
       image:
-        "https://public.readdy.ai/ai/img_res/37470afba6e9282bed1841de5e2fdb88.jpg",
+        "images/Beryl.jpg",
     },
     {
       quote:
@@ -75,7 +75,7 @@ const About = () => {
       author: "Juliet Ajwang",
       role: "Professor University of Telaviv",
       image:
-        "https://public.readdy.ai/ai/img_res/37470afba6e9282bed1841de5e2fdb88.jpg",
+        "images/Juliet.jpg",
     },
   ];
 
