@@ -172,7 +172,7 @@ const About = () => {
             About Our Foundation
           </Heading>
           <Text fontSize="xl" color="white" maxW="2xl">
-            Since 2010, we've been dedicated to creating positive change through education,
+            Since 2010,we&rsquo;ve been dedicated to creating positive change through education,
             healthcare, and community development. Our mission is to empower communities and
             transform lives across the globe.
           </Text>
