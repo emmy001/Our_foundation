@@ -26,7 +26,7 @@ const Home = () => {
         },
         series: [
           {
-            name: "Donation Impact",
+            name: "Donation Donate",
             type: "pie",
             radius: ["40%", "70%"],
             data: [
@@ -76,7 +76,7 @@ const Home = () => {
                <Link href="/impact" color="gray.700" _hover={{ color: "blue.600" }}>
                 Impact
               </Link>
-              <Link href="#" color="gray.700" _hover={{ color: "blue.600" }}>
+              <Link href="/donate" color="gray.700" _hover={{ color: "blue.600" }}>
                 Volunteer
               </Link>
               <Link href="#" color="gray.700" _hover={{ color: "blue.600" }}>
@@ -135,7 +135,7 @@ const Home = () => {
         </Box>
       </Box>
 
-      {/* Impact Stats */}
+      {/* Donate Stats */}
       <Box py={16} bg="gray.50">
         <Box maxW="7xl" mx="auto" px={4}>
           <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={8}>
@@ -208,7 +208,7 @@ const Home = () => {
         </Box>
       </Box>
 
-      {/* Donation Impact */}
+      {/* Donation Donate */}
       <Box py={16} bg="gray.50">
         <Box maxW="7xl" mx="auto" px={4}>
           <Heading as="h2" fontSize="3xl" fontWeight="bold" textAlign="center" mb={12}>
@@ -299,7 +299,7 @@ const Home = () => {
               </Heading>
               <List spacing={2}>
                 <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
+                  <Link href="/about" color="gray.400" _hover={{ color: "white" }}>
                     About Us
                   </Link>
                 </ListItem>

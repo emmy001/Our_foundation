@@ -1,18 +1,72 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
 import * as echarts from "echarts";
-import { Box, Flex, Heading, Text, Button, Grid, GridItem, Input, InputGroup, Link, InputLeftElement, Radio, RadioGroup, Stack, List, ListItem, Icon, useColorModeValue,
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Button,
+  Grid,
+  GridItem,
+  Image,
+  List,
+  ListItem,
+  Icon,
+  useBreakpointValue,
+  Progress,
+  useColorModeValue,
 } from "@chakra-ui/react";
-import { FaHeart, FaUtensils, FaBook, FaPaypal, FaGooglePay, FaCreditCard, FaHospital, FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import {
+  FaHeart,
+  FaProjectDiagram,
+  FaHandHoldingUsd,
+  FaGlobe,
+  FaGraduationCap,
+  FaHospital,
+  FaSeedling,
+  FaAward,
+  FaCertificate,
+  FaStar,
+  FaTrophy,
+  FaMedal,
+} from "react-icons/fa";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const Impact = () => {
-  const [selectedAmount, setSelectedAmount] = useState(25);
-  const [customAmount, setCustomAmount] = useState("");
-  const [selectedPayment, setSelectedPayment] = useState("credit");
+  const chartRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const chartDom = document.getElementById("impact-chart");
-    if (chartDom) {
-      const myChart = echarts.init(chartDom);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentElement = document.querySelector(".stats-section");
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      const chart = echarts.init(chartRef.current);
+
       const option = {
         animation: false,
         tooltip: {
@@ -24,7 +78,7 @@ const Impact = () => {
         },
         series: [
           {
-            name: "Fund Allocation",
+            name: "Fund Distribution",
             type: "pie",
             radius: ["40%", "70%"],
             avoidLabelOverlap: false,
@@ -48,339 +102,310 @@ const Impact = () => {
               show: false,
             },
             data: [
-              { value: 75, name: "Direct Aid" },
-              { value: 15, name: "Operations" },
-              { value: 10, name: "Administration" },
+              { value: 1048, name: "Education" },
+              { value: 735, name: "Healthcare" },
+              { value: 580, name: "Environment" },
+              { value: 484, name: "Community" },
+              { value: 300, name: "Emergency Aid" },
             ],
           },
         ],
       };
-      myChart.setOption(option);
+
+      chart.setOption(option);
+
+      return () => {
+        chart.dispose();
+      };
     }
   }, []);
 
-  const handleAmountSelect = (amount) => {
-    setSelectedAmount(amount);
-    setCustomAmount("");
-  };
-
-  const handleCustomAmount = (e) => {
-    setCustomAmount(e.target.value);
-    setSelectedAmount(0);
-  };
-
   return (
-    <Box minH="100vh" bg="gray.50">
-      {/* Header */}
-      <Box as="header" position="fixed" top={0} w="full" bg="white" boxShadow="md" zIndex={50}>
-        <Box maxW="7xl" mx="auto" px={4} h={20} display="flex" alignItems="center" justifyContent="space-between">
-          <Flex align="center" gap={2}>
-            <Icon as={FaHeart} fontSize="3xl" color="rose.500" />
-            <Heading fontSize="2xl" fontWeight="bold" color="gray.800">
-              GlobalHope
-            </Heading>
-          </Flex>
-          <Flex as="nav" gap={8} display={{ base: "none", md: "flex" }}>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
-              About
-            </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
-              Programs
-            </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
-              Impact
-            </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
-              Contact
-            </Link>
-            <Button colorScheme="rose">Donate Now</Button>
-          </Flex>
-        </Box>
-      </Box>
-
+    <Box minH="100vh" bg="white">
       {/* Hero Section */}
-      <Box pt={20}>
+      <Box position="relative" h="600px" overflow="hidden">
+        <Image
+          src="https://public.readdy.ai/ai/img_res/1aa1294666fe4c0643e58298e190ca97.jpg"
+          alt="Hero Background"
+          w="full"
+          h="full"
+          objectFit="cover"
+          position="absolute"
+          inset={0}
+        />
+        <Box
+          position="absolute"
+          inset={0}
+          bgGradient="linear(to-r, blue.900/80, transparent)"
+        />
         <Box
           position="relative"
-          h="500px"
-          bgImage="url('https://public.readdy.ai/ai/img_res/eaa0ab8c1647684210fd9ffbdb222273.jpg')"
-          bgSize="cover"
-          bgPosition="center"
+          maxW="7xl"
+          mx="auto"
+          px={6}
+          h="full"
+          display="flex"
+          alignItems="center"
         >
-          <Box position="absolute" inset={0} bg="blackAlpha.500">
-            <Box maxW="7xl" mx="auto" px={4} h="full" display="flex" alignItems="center">
-              <Box color="white" maxW="2xl">
-                <Heading as="h1" fontSize="5xl" fontWeight="bold" mb={6}>
-                  Together We Can Make A Difference
-                </Heading>
-                <Text fontSize="xl" mb={8}>
-                  Your donation helps us provide essential support to communities in need. Join us in creating positive
-                  change around the world.
-                </Text>
-                <Button colorScheme="rose" size="lg">
-                  Donate Now
-                </Button>
-              </Box>
-            </Box>
+          <Box maxW="2xl" color="white">
+            <Heading as="h1" fontSize="5xl" fontWeight="bold" mb={6}>
+              Making Real Change Happen
+            </Heading>
+            <Text fontSize="xl" mb={8}>
+              Together, we&rsquo;ve transformed countless lives through sustainable
+              initiatives and community-driven projects. Join us in creating
+              lasting positive impact.
+            </Text>
+            <Button
+              colorScheme="yellow"
+              color="blue.900"
+              px={8}
+              py={4}
+              fontSize="lg"
+              fontWeight="semibold"
+              _hover={{ bg: "yellow.400" }}
+            >
+              Donate Now
+            </Button>
           </Box>
         </Box>
       </Box>
 
-      {/* Main Content */}
-      <Box maxW="7xl" mx="auto" px={4} py={16}>
-        {/* Donation Amount Section */}
-        <Box bg="white" borderRadius="lg" boxShadow="lg" p={8} mb={12}>
-          <Heading as="h2" fontSize="3xl" fontWeight="bold" textAlign="center" mb={8}>
-            Choose Your Donation Amount
-          </Heading>
-          <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={6} mb={8}>
-            {[10, 25, 50, 100].map((amount) => (
-              <Button
-                key={amount}
-                onClick={() => handleAmountSelect(amount)}
-                variant="outline"
-                p={6}
-                textAlign="center"
-                borderWidth={2}
-                borderColor={selectedAmount === amount ? "rose.500" : "gray.200"}
-                bg={selectedAmount === amount ? "rose.50" : "white"}
-                _hover={{ borderColor: "rose.300" }}
-              >
-                <Box>
-                  <Text fontSize="2xl" fontWeight="bold" mb={2}>
-                    ${amount}
-                  </Text>
-                  <Text fontSize="sm" color="gray.600">
-                    {amount === 10 && "Provides meals for one child"}
-                    {amount === 25 && "Supports a family for a week"}
-                    {amount === 50 && "Funds educational materials"}
-                    {amount === 100 && "Enables medical care access"}
-                  </Text>
-                </Box>
-              </Button>
+      {/* Stats Section */}
+      <Box className="stats-section" py={20} bg="gray.50">
+        <Box maxW="7xl" mx="auto" px={6}>
+          <Grid
+            templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
+            gap={8}
+            textAlign="center"
+          >
+            {[
+              { icon: FaHeart, number: 250000, text: "Lives Impacted" },
+              { icon: FaProjectDiagram, number: 1500, text: "Projects Completed" },
+              { icon: FaHandHoldingUsd, number: 25000000, text: "Funds Raised (USD)" },
+              { icon: FaGlobe, number: 75, text: "Communities Served" },
+            ].map((stat, index) => (
+              <Box key={index}>
+                <Icon as={stat.icon} fontSize="4xl" color="blue.600" mb={4} />
+                <Heading as="div" fontSize="4xl" fontWeight="bold" color="gray.900" mb={2}>
+                  {isVisible ? new Intl.NumberFormat().format(stat.number) : "0"}
+                </Heading>
+                <Text color="gray.600">{stat.text}</Text>
+              </Box>
             ))}
           </Grid>
-          <Flex justify="center" mb={8}>
-            <InputGroup maxW="64">
-              <InputLeftElement pointerEvents="none" color="gray.500">
-                $
-              </InputLeftElement>
-              <Input
-                type="number"
-                placeholder="Custom Amount"
-                value={customAmount}
-                onChange={handleCustomAmount}
-                borderWidth={2}
-                borderColor="gray.200"
-                _focus={{ borderColor: "rose.500" }}
-              />
-            </InputGroup>
-          </Flex>
         </Box>
+      </Box>
 
-        {/* Payment Section */}
-        <Box bg="white" borderRadius="lg" boxShadow="lg" p={8} mb={12}>
-          <Heading as="h2" fontSize="3xl" fontWeight="bold" textAlign="center" mb={8}>
-            Payment Method
+      {/* Success Stories */}
+      <Box py={20}>
+        <Box maxW="7xl" mx="auto" px={6}>
+          <Heading as="h2" fontSize="4xl" fontWeight="bold" textAlign="center" mb={12}>
+            Success Stories
           </Heading>
-          <RadioGroup value={selectedPayment} onChange={setSelectedPayment} mb={8}>
-            <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={6}>
-              {["credit", "paypal", "google"].map((method) => (
-                <Radio
-                  key={method}
-                  value={method}
-                  size="lg"
-                  colorScheme="rose"
-                  borderWidth={2}
-                  borderColor={selectedPayment === method ? "rose.500" : "gray.200"}
-                  bg={selectedPayment === method ? "rose.50" : "white"}
-                  _hover={{ borderColor: "rose.300" }}
-                >
-                  <Box textAlign="center">
-                    <Icon
-                      as={method === "credit" ? FaCreditCard : method === "paypal" ? FaPaypal : FaGooglePay}
-                      fontSize="2xl"
-                      mb={2}
-                    />
-                    <Text fontWeight="semibold">
-                      {method === "credit" && "Credit Card"}
-                      {method === "paypal" && "PayPal"}
-                      {method === "google" && "Google Pay"}
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={useBreakpointValue({ base: 1, md: 3 })}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000 }}
+            mb={12}
+          >
+            {[
+              {
+                image: "https://public.readdy.ai/ai/img_res/e7482537f02f0d0f6195be0190df0e39.jpg",
+                quote:
+                  "The foundation's support transformed our village's education system. Now our children have access to quality learning.",
+                name: "Sarah Mwangi",
+                location: "Nairobi, Kenya",
+              },
+              {
+                image: "https://public.readdy.ai/ai/img_res/20f6ceb3caec2403f8df745b61fe0c77.jpg",
+                quote:
+                  "Thanks to the agricultural program, our farm yield has tripled. We can now support our entire community.",
+                name: "Raj Patel",
+                location: "Gujarat, India",
+              },
+              {
+                image: "https://public.readdy.ai/ai/img_res/e67d1719200a3c069f4bdcabd7e62ad4.jpg",
+                quote:
+                  "The new medical facility has brought hope to our community. We can now provide essential healthcare services.",
+                name: "Maria Rodriguez",
+                location: "Lima, Peru",
+              },
+            ].map((story, index) => (
+              <SwiperSlide key={index}>
+                <Box bg="white" borderRadius="lg" boxShadow="lg" overflow="hidden">
+                  <Image
+                    src={story.image}
+                    alt={story.name}
+                    w="full"
+                    h="48"
+                    objectFit="cover"
+                    objectPosition="top"
+                  />
+                  <Box p={6}>
+                    <Text color="gray.600" fontStyle="italic" mb={4}>
+                      {story.quote}
+                    </Text>
+                    <Text fontWeight="semibold">{story.name}</Text>
+                    <Text fontSize="sm" color="gray.500">
+                      {story.location}
                     </Text>
                   </Box>
-                </Radio>
-              ))}
-            </Grid>
-          </RadioGroup>
-          {selectedPayment === "credit" && (
-            <Box maxW="md" mx="auto">
-              <Box mb={4}>
-                <Text color="gray.700" mb={2}>
-                  Card Number
-                </Text>
-                <Input
-                  type="text"
-                  placeholder="1234 5678 9012 3456"
-                  borderWidth={2}
-                  borderColor="gray.200"
-                  _focus={{ borderColor: "rose.500" }}
-                />
-              </Box>
-              <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={4} mb={4}>
-                <Box>
-                  <Text color="gray.700" mb={2}>
-                    Expiry Date
-                  </Text>
-                  <Input
-                    type="text"
-                    placeholder="MM/YY"
-                    borderWidth={2}
-                    borderColor="gray.200"
-                    _focus={{ borderColor: "rose.500" }}
-                  />
                 </Box>
-                <Box>
-                  <Text color="gray.700" mb={2}>
-                    CVV
-                  </Text>
-                  <Input
-                    type="text"
-                    placeholder="123"
-                    borderWidth={2}
-                    borderColor="gray.200"
-                    _focus={{ borderColor: "rose.500" }}
-                  />
-                </Box>
-              </Grid>
-            </Box>
-          )}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </Box>
+      </Box>
 
-        {/* Impact Section */}
-        <Box bg="white" borderRadius="lg" boxShadow="lg" p={8} mb={12}>
-          <Heading as="h2" fontSize="3xl" fontWeight="bold" textAlign="center" mb={8}>
-            Your Impact
+      {/* Impact Visualization */}
+      <Box py={20} bg="gray.50">
+        <Box maxW="7xl" mx="auto" px={6}>
+          <Heading as="h2" fontSize="4xl" fontWeight="bold" textAlign="center" mb={12}>
+            Our Impact Distribution
           </Heading>
-          <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={12}>
-            <Box>
-              <Heading as="h3" fontSize="2xl" fontWeight="bold" mb={4}>
-                Fund Allocation
+          <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={8}>
+            <Box ref={chartRef} h="400px" />
+            <Box display="flex" flexDirection="column" justifyContent="center">
+              <Heading as="h3" fontSize="2xl" fontWeight="semibold" mb={6}>
+                How We Allocate Resources
               </Heading>
-              <Box id="impact-chart" h="400px" />
-            </Box>
-            <Box>
-              <Heading as="h3" fontSize="2xl" fontWeight="bold" mb={4}>
-                2023 Impact Statistics
-              </Heading>
-              <Stack spacing={6}>
-                <Flex align="center">
-                  <Icon as={FaUtensils} fontSize="3xl" color="rose.500" w={12} />
-                  <Box ml={4}>
-                    <Text fontSize="xl" fontWeight="bold">
-                      250,000+
-                    </Text>
-                    <Text color="gray.600">Meals Provided</Text>
-                  </Box>
-                </Flex>
-                <Flex align="center">
-                  <Icon as={FaBook} fontSize="3xl" color="rose.500" w={12} />
-                  <Box ml={4}>
-                    <Text fontSize="xl" fontWeight="bold">
-                      15,000+
-                    </Text>
-                    <Text color="gray.600">Children Educated</Text>
-                  </Box>
-                </Flex>
-                <Flex align="center">
-                  <Icon as={FaHospital} fontSize="3xl" color="rose.500" w={12} />
-                  <Box ml={4}>
-                    <Text fontSize="xl" fontWeight="bold">
-                      35,000+
-                    </Text>
-                    <Text color="gray.600">Medical Treatments</Text>
-                  </Box>
-                </Flex>
-              </Stack>
+              <Text color="gray.600" mb={4}>
+                We ensure transparent and effective distribution of funds across
+                various sectors to maximize our impact. Our focus areas include
+                education, healthcare, environmental conservation, community
+                development, and emergency aid.
+              </Text>
+              <Text color="gray.600">
+                Through strategic partnerships and careful planning, we&rsquo;ve
+                maintained a balanced approach to address both immediate needs
+                and long-term sustainable development goals.
+              </Text>
             </Box>
           </Grid>
         </Box>
       </Box>
 
-      {/* Footer */}
-      <Box as="footer" bg="gray.800" color="white" py={12}>
-        <Box maxW="7xl" mx="auto" px={4}>
-          <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={8}>
-            <Box>
-              <Flex align="center" gap={2} mb={4}>
-                <Icon as={FaHeart} fontSize="2xl" color="rose.500" />
-                <Heading fontSize="xl" fontWeight="bold">
-                  GlobalHope
+      {/* Goals Section */}
+      <Box py={20}>
+        <Box maxW="7xl" mx="auto" px={6}>
+          <Heading as="h2" fontSize="4xl" fontWeight="bold" textAlign="center" mb={12}>
+            Our Future Goals
+          </Heading>
+          <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={8}>
+            {[
+              {
+                icon: FaGraduationCap,
+                title: "Education Initiative 2024",
+                description: "Build 100 new schools in underserved communities",
+                progress: 65,
+              },
+              {
+                icon: FaHospital,
+                title: "Healthcare Access Program",
+                description: "Establish 50 mobile medical clinics",
+                progress: 40,
+              },
+              {
+                icon: FaSeedling,
+                title: "Environmental Conservation",
+                description: "Plant 1 million trees by 2025",
+                progress: 75,
+              },
+            ].map((goal, index) => (
+              <Box key={index} bg="white" borderRadius="lg" boxShadow="lg" p={6}>
+                <Icon as={goal.icon} fontSize="3xl" color="blue.600" mb={4} />
+                <Heading as="h3" fontSize="xl" fontWeight="semibold" mb={2}>
+                  {goal.title}
                 </Heading>
-              </Flex>
-              <Text color="gray.400">Charity Registration: #12345-6789</Text>
-              <Text color="gray.400">Making the world better since 1995</Text>
-            </Box>
-            <Box>
-              <Heading as="h4" fontSize="lg" fontWeight="bold" mb={4}>
-                Contact
-              </Heading>
-              <Stack spacing={2} color="gray.400">
-                <Text>1234 Hope Street</Text>
-                <Text>New York, NY 10001</Text>
-                <Text>contact@globalhope.org</Text>
-                <Text>+1 (555) 123-4567</Text>
-              </Stack>
-            </Box>
-            <Box>
-              <Heading as="h4" fontSize="lg" fontWeight="bold" mb={4}>
-                Quick Links
-              </Heading>
-              <List spacing={2}>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    About Us
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Programs
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Impact Reports
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Volunteer
-                  </Link>
-                </ListItem>
-              </List>
-            </Box>
-            <Box>
-              <Heading as="h4" fontSize="lg" fontWeight="bold" mb={4}>
-                Follow Us
-              </Heading>
-              <Flex gap={4}>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaFacebook} fontSize="xl" />
-                </Link>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaTwitter} fontSize="xl" />
-                </Link>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaInstagram} fontSize="xl" />
-                </Link>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaLinkedin} fontSize="xl" />
-                </Link>
-              </Flex>
-            </Box>
+                <Text color="gray.600" mb={4}>
+                  {goal.description}
+                </Text>
+                <Progress value={goal.progress} size="sm" colorScheme="blue" borderRadius="full" />
+                <Text fontSize="sm" color="gray.500" mt={2}>
+                  {goal.progress}% Complete
+                </Text>
+              </Box>
+            ))}
           </Grid>
-          <Box borderTop="1px" borderColor="gray.700" mt={8} pt={8} textAlign="center" color="gray.400">
-            <Text>&copy; 2024 GlobalHope. All rights reserved.</Text>
-          </Box>
+        </Box>
+      </Box>
+
+      {/* CTA Section */}
+      <Box position="relative" py={20}>
+        <Image
+          src="https://public.readdy.ai/ai/img_res/70e96d562f1300f5f0539ea7e2e66909.jpg"
+          alt="CTA Background"
+          w="full"
+          h="full"
+          objectFit="cover"
+          position="absolute"
+          inset={0}
+        />
+        <Box
+          position="absolute"
+          inset={0}
+          bg="blue.900"
+          opacity="0.8"
+        />
+        <Box position="relative" maxW="7xl" mx="auto" px={6} textAlign="center">
+          <Heading as="h2" fontSize="4xl" fontWeight="bold" color="white" mb={6}>
+            Be Part of the Change
+          </Heading>
+          <Text fontSize="xl" color="white" mb={8} maxW="2xl" mx="auto">
+            Your support can help us continue making a difference in communities
+            around the world. Join us in our mission to create lasting positive
+            change.
+          </Text>
+          <Flex justify="center" gap={6}>
+            <Button
+              colorScheme="yellow"
+              color="blue.900"
+              px={8}
+              py={4}
+              fontSize="lg"
+              fontWeight="semibold"
+              _hover={{ bg: "yellow.400" }}
+            >
+              Donate Now
+            </Button>
+            <Button
+              variant="outline"
+              color="white"
+              borderColor="white"
+              px={8}
+              py={4}
+              fontSize="lg"
+              fontWeight="semibold"
+              _hover={{ bg: "whiteAlpha.100" }}
+            >
+              Get Involved
+            </Button>
+          </Flex>
+        </Box>
+      </Box>
+
+      {/* Recognition Bar */}
+      <Box py={12} bg="gray.50">
+        <Box maxW="7xl" mx="auto" px={6}>
+          <Flex justify="space-between" align="center" wrap="wrap" gap={6}>
+            {[
+              { icon: FaAward, text: "Best NGO 2023" },
+              { icon: FaCertificate, text: "ISO Certified" },
+              { icon: FaStar, text: "Top Rated Charity" },
+              { icon: FaTrophy, text: "Impact Excellence" },
+              { icon: FaMedal, text: "Community Choice" },
+            ].map((award, index) => (
+              <Flex key={index} align="center">
+                <Icon as={award.icon} fontSize="2xl" color="blue.600" mr={3} />
+                <Text color="gray.600" fontWeight="medium">
+                  {award.text}
+                </Text>
+              </Flex>
+            ))}
+          </Flex>
         </Box>
       </Box>
     </Box>

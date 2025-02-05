@@ -90,7 +90,7 @@ const About = () => {
         },
         series: [
           {
-            name: "Impact Statistics",
+            name: "Donate Statistics",
             type: "pie",
             radius: ["40%", "70%"],
             avoidLabelOverlap: false,
@@ -281,7 +281,7 @@ const About = () => {
         </Box>
       </Box>
 
-      {/* Impact Statistics */}
+      {/* Donate Statistics */}
       <Box py={20} bg="gray.50">
         <Box maxW="7xl" mx="auto" px={4}>
           <Heading as="h2" fontSize="3xl" fontWeight="bold" color="gray.800" textAlign="center" mb={12}>
