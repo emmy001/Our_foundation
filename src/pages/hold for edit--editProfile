@@ -16,11 +16,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-  Grid,
-  GridItem,
-  IconButton,
 } from '@chakra-ui/react';
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import ResponsiveContainer from "../Components/ResponsiveContainers";
 import ImageBackground from "../Components/Background";
 import ProfileHeader from "../Components/ProfileHeader";
@@ -29,14 +25,14 @@ import ProfileName from "../Components/Profile/ProfileName";
 import BodyBold from "../Components/BodyBold";
 import OccupationText from "../Components/OccupationText";
 import PersonalInfo from "../Components/Profile/PersonalInfo";
-import axios from "axios";
-import { jwtDecode } from 'jwt-decode';
+import axios from "axios"; // For API requests
+import { jwtDecode } from 'jwt-decode'; // To decode the JWT token
 import { useRouter } from "next/router";
 import UploadImage from "../Components/UploadImage";
 
 const Index = () => {
   const router = useRouter();
-  const { isOpen: isPostModalOpen, onOpen: onPostModalOpen, onClose: onPostModalClose } = useDisclosure();
+  const { isOpen: isPostModalOpen, onOpen: onPostModalOpen, onClose: onPostModalClose } = useDisclosure(); // Modal hooks for post creation
   const [formData, setFormData] = useState({
     name: '',
     dob: '',
@@ -50,13 +46,14 @@ const Index = () => {
   const [postData, setPostData] = useState({
     title: '',
     content: '',
-    imageUrl: '',
+    imageUrl: '', // Store the Cloudinary URL
+    videoUrl: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmittingPost, setIsSubmittingPost] = useState(false);
-  const [userId, setUserId] = useState(null);
-  const [posts, setPosts] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false); // For user data submission
+  const [isSubmittingPost, setIsSubmittingPost] = useState(false); // For post submission
+  const [userId, setUserId] = useState(null); // State to store the user ID
 
+  // Fetch existing user data
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -79,43 +76,23 @@ const Index = () => {
           email: userData.personalInfo.email,
           phone: userData.personalInfo.phoneNo,
           occupation: userData.personalInfo.occupation,
-          interests: userData.interests.join(', '),
+          interests: userData.interests.join(', '), // Convert array to comma-separated string
           aboutMe: userData.aboutMe,
           imageUrl: userData.imageUrl,
         });
 
-        setUserId(userData._id);
+        // Store the user ID in state
+        setUserId(userData._id); // Assuming the backend returns the user ID as `_id`
       } catch (error) {
         console.error('Error fetching user data:', error);
         alert('Failed to fetch user data. Please try again.');
       }
     };
 
-    const fetchPosts = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          alert("No authentication token found. Please log in.");
-          return;
-        }
-
-        const response = await axios.get('http://localhost:5000/api/posts', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        setPosts(response.data.data);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        alert('Failed to fetch posts. Please try again.');
-      }
-    };
-
     fetchUserData();
-    fetchPosts();
   }, []);
 
+  // Handle form input changes for user data
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -124,6 +101,7 @@ const Index = () => {
     }));
   };
 
+  // Handle post input changes
   const handlePostInputChange = (e) => {
     const { name, value } = e.target;
     setPostData((prevData) => ({
@@ -132,6 +110,7 @@ const Index = () => {
     }));
   };
 
+  // Upload image to Cloudinary
   const uploadImage = async (image) => {
     const data = new FormData();
     data.append("file", image);
@@ -145,7 +124,7 @@ const Index = () => {
       const result = await response.json();
       setPostData((prevData) => ({
         ...prevData,
-        imageUrl: result.secure_url,
+        imageUrl: result.secure_url, // Update the imageUrl in postData
       }));
       alert("Image Successfully Uploaded");
     } catch (error) {
@@ -154,6 +133,7 @@ const Index = () => {
     }
   };
 
+  // Submit form data to update the database
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -172,6 +152,7 @@ const Index = () => {
         return;
       }
 
+      // Format the formData to match the backend schema
       const payload = {
         name: formData.name,
         occupation: formData.occupation,
@@ -183,12 +164,13 @@ const Index = () => {
           phoneNo: formData.phone,
           occupation: formData.occupation,
         },
-        interests: formData.interests.split(',').map(i => i.trim()),
+        interests: formData.interests.split(',').map(i => i.trim()), // Convert interests to an array
         aboutMe: formData.aboutMe,
       };
 
       console.log("Sending data:", JSON.stringify(payload, null, 2));
 
+      // Send a PUT request to update the user data
       await axios.put(`http://localhost:5000/api/userdata/${userId}`, payload, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -204,93 +186,10 @@ const Index = () => {
     }
   };
 
-const handleOpenPostModal = () => {
-  setPostData({
-    title: '',
-    content: '',
-    imageUrl: '',
-    _id: '', // Clear the _id field
-  });
-  onPostModalOpen(); // Open the modal
-};
+  // Submit post data to the backend
+  const handlePostSubmit = async () => {
+    setIsSubmittingPost(true);
 
-// const handleEditPost = (postId) => {
-//   const postToEdit = posts.find(post => post._id === postId);
-//   setPostData({
-//     _id: postToEdit._id, // Set the _id field for editing
-//     title: postToEdit.title,
-//     content: postToEdit.content,
-//     imageUrl: postToEdit.imageUrl,
-//     videoUrl: postToEdit.videoUrl,
-//   });
-//   onPostModalOpen(); // Open the modal
-// };
-
-const handlePostSubmit = async () => {
-  setIsSubmittingPost(true);
-
-  try {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      alert("No authentication token found. Please log in.");
-      return;
-    }
-
-    // if (postData.imageUrl && postData.videoUrl) {
-    //   alert("You can only upload an image or provide a video URL, not both.");
-    //   return;
-    // }
-
-    const payload = {
-      title: postData.title,
-      content: postData.content,
-      imageUrl: postData.imageUrl,
-    };
-
-    let response;
-    if (postData._id) {
-      // Update existing post
-      response = await axios.put(`http://localhost:5000/api/posts/${postData._id}`, payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-    } else {
-      // Create new post
-      response = await axios.post('http://localhost:5000/api/posts', payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-    }
-
-    alert(postData._id ? 'Post updated successfully!' : 'Post created successfully!');
-    onPostModalClose();
-    setPostData({
-      title: '',
-      content: '',
-      imageUrl: '',
-      _id: '', // Clear the _id field after submission
-    });
-
-    // Refetch posts to update the list
-    const postsResponse = await axios.get('http://localhost:5000/api/posts', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setPosts(postsResponse.data.data);
-  } catch (error) {
-    console.error('Error creating/updating post:', error.response || error.message);
-    alert('Failed to create/update post. Please try again.');
-  } finally {
-    setIsSubmittingPost(false);
-  }
-};
-
-  const handleDeletePost = async (postId) => {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -298,37 +197,47 @@ const handlePostSubmit = async () => {
         return;
       }
 
-      await axios.delete(`http://localhost:5000/api/posts/${postId}`, {
+      // Validate that the user cannot provide both an image and a video URL
+      if (postData.imageUrl && postData.videoUrl) {
+        alert("You can only upload an image or provide a video URL, not both.");
+        return;
+      }
+
+      const payload = {
+        title: postData.title,
+        content: postData.content,
+        imageUrl: postData.imageUrl, // Use the Cloudinary URL
+        videoUrl: postData.videoUrl,
+      };
+
+      const response = await axios.post('http://localhost:5000/api/posts', payload, {
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json', // Send as JSON
         },
       });
 
-      setPosts(posts.filter(post => post._id !== postId));
-      alert('Post deleted successfully!');
-      // Remove the deleted post from the state
-      setPosts(posts.filter(post => post._id !== postId));
+      alert('Post created successfully!');
+      onPostModalClose(); // Close the modal
+      setPostData({ // Reset form data
+        title: '',
+        content: '',
+        imageUrl: '', // Reset imageUrl
+        videoUrl: '',
+      });
     } catch (error) {
-      console.error('Error deleting post:', error);
-      alert('Failed to delete post. Please try again.');
+      console.error('Error creating post:', error.response || error.message);
+      alert('Failed to create post. Please try again.');
+    } finally {
+      setIsSubmittingPost(false);
     }
   };
 
-  const handleEditPost = (postId) => {
-    const postToEdit = posts.find(post => post._id === postId);
-    setPostData({
-      _id: postToEdit._id,
-      title: postToEdit.title,
-      content: postToEdit.content,
-      imageUrl: postToEdit.imageUrl,
-    });
-    onPostModalOpen();
-  };
-
+  // Handle logout
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('token'); // Remove the token
     alert("You have been logged out.");
-    router.push("/");
+    router.push("/"); // Redirect to the login page (React Router v6)
   };
 
   return (
@@ -339,8 +248,9 @@ const handlePostSubmit = async () => {
       <ResponsiveContainer>
         <ProfileHeader />
 
+        {/* Add Post and Logout Buttons */}
         <Flex justifyContent="flex-end" mt="6" gap="10px">
-          <Button colorScheme="blue" onClick={handleOpenPostModal}>
+          <Button colorScheme="blue" onClick={onPostModalOpen}>
             Add Post
           </Button>
           <Button colorScheme="red" onClick={handleLogout}>
@@ -348,6 +258,7 @@ const handlePostSubmit = async () => {
           </Button>
         </Flex>
 
+        {/* Add Post Modal */}
         <Modal isOpen={isPostModalOpen} onClose={onPostModalClose}>
           <ModalOverlay />
           <ModalContent>
@@ -378,6 +289,24 @@ const handlePostSubmit = async () => {
               <FormControl mt="4">
                 <UploadImage onImageUpload={uploadImage} />
               </FormControl>
+              <FormControl mt="4">
+                <FormLabel>Video URL</FormLabel>
+                <Input
+                  type="url"
+                  name="videoUrl"
+                  value={postData.videoUrl}
+                  onChange={handlePostInputChange}
+                  placeholder="Enter video URL"
+                />
+              </FormControl>
+              {postData.videoUrl && (
+                <Box mt="4">
+                  <video controls width="100%">
+                    <source src={postData.videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </Box>
+              )}
             </ModalBody>
             <ModalFooter>
               <Button colorScheme="blue" onClick={handlePostSubmit} isLoading={isSubmittingPost}>
@@ -390,6 +319,7 @@ const handlePostSubmit = async () => {
           </ModalContent>
         </Modal>
 
+        {/* Edit Userdata Section */}
         <Box mt="20px" p="20px" bg="white" borderRadius="10px" shadow="lg">
           <BodyBold>Edit Userdata</BodyBold>
           <form onSubmit={handleSubmit}>
@@ -483,39 +413,6 @@ const handlePostSubmit = async () => {
               Update Information
             </Button>
           </form>
-        </Box>
-
-        <Box mt="20px" p="20px" bg="white" borderRadius="10px" shadow="lg">
-          <BodyBold>Posts</BodyBold>
-          <Grid templateColumns="repeat(2, 1fr)" gap={6} mt="4">
-            {posts.map((post) => (
-              <GridItem key={post._id} p="4" borderWidth="1px" borderRadius="lg">
-                <Box>
-                  <Box fontWeight="bold" fontSize="lg">{post.title}</Box>
-                  <Box mt="2">{post.content}</Box>
-                  {post.imageUrl && (
-                    <Box mt="4">
-                      <img src={post.imageUrl} alt="Post" style={{ width: '100%', borderRadius: '8px' }} />
-                    </Box>
-                  )}
-                  <Flex justifyContent="flex-end" mt="4">
-                    <IconButton
-                      aria-label="Edit Post"
-                      icon={<EditIcon />}
-                      onClick={() => handleEditPost(post._id)}
-                      mr="2"
-                    />
-                    <IconButton
-                      aria-label="Delete Post"
-                      icon={<DeleteIcon />}
-                      onClick={() => handleDeletePost(post._id)}
-                      colorScheme="red"
-                    />
-                  </Flex>
-                </Box>
-              </GridItem>
-            ))}
-          </Grid>
         </Box>
       </ResponsiveContainer>
     </ChakraProvider>

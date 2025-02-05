@@ -4,6 +4,8 @@ import NavigationBar from './Components/Header/Navigation'; // NavigationBar han
 import Index from './pages';
 import EditProfile from "./pages/editProfile";
 import Auth from "./Components/Modal/Auth";
+import About from "./pages/about";
+import Impact from "./pages/impact";
 
 function App(){
   return (
@@ -14,6 +16,8 @@ function App(){
         <Route path="/" element={<Index />} />
         <Route path="/editProfile" element={<EditProfile />} />
         <Route path="/Auth" element={<Auth />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/impact" element={<Impact />} />
       </Routes>
     </Router>
   </div>);
