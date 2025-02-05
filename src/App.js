@@ -5,6 +5,7 @@ import Index from './pages';
 import About from "./pages/about";
 import Donate from "./pages/donate";
 import Impact from "./pages/impact";
+import Programs from "./pages/programs";
 
 function App(){
   return (
@@ -16,6 +17,8 @@ function App(){
         <Route path="/about" element={<About />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/impact" element={<Impact />} />
+        <Route path="/programs" element={<Programs />} />
+
       </Routes>
     </Router>
   </div>);

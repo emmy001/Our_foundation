@@ -73,6 +73,9 @@ const Home = () => {
               <Link href="#" color="gray.700" _hover={{ color: "blue.600" }}>
                 Projects
               </Link>
+              <Link href="/programs" color="gray.700" _hover={{ color: "blue.600" }}>
+                Programs
+              </Link>
                <Link href="/impact" color="gray.700" _hover={{ color: "blue.600" }}>
                 Impact
               </Link>

@@ -149,7 +149,7 @@ const About = () => {
             <Link href="about" color="rose.500">
               About
             </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
+            <Link href="/programs" color="gray.600" _hover={{ color: "rose.500" }}>
               Programs
             </Link>
             <Link href="/impact" color="gray.600" _hover={{ color: "rose.500" }}>
@@ -389,7 +389,7 @@ const About = () => {
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
+                  <Link href="/programs" color="gray.400" _hover={{ color: "white" }}>
                     Programs
                   </Link>
                 </ListItem>
