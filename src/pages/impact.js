@@ -301,7 +301,7 @@ const Impact = () => {
             {[
               {
                 icon: FaGraduationCap,
-                title: "Education Initiative 2024",
+                title: "Education Initiative 2025",
                 description: "Build 100 new schools in underserved communities",
                 progress: 65,
               },
@@ -314,7 +314,7 @@ const Impact = () => {
               {
                 icon: FaSeedling,
                 title: "Environmental Conservation",
-                description: "Plant 1 million trees by 2025",
+                description: "Plant 1 million trees by 2026",
                 progress: 75,
               },
             ].map((goal, index) => (
@@ -411,6 +411,8 @@ const Impact = () => {
           </Flex>
         </Box>
       </Box>
+      {/*Footer*/}
+    <Footer/>
     </Box>
   );
 };

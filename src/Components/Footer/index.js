@@ -26,8 +26,8 @@ const Footer = () => {
                 </Link>
               </ListItem>
               <ListItem>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  Our Projects
+                <Link href="/programs" color="gray.400" _hover={{ color: "white" }}>
+                  Our Programs
                 </Link>
               </ListItem>
               <ListItem>
@@ -36,7 +36,7 @@ const Footer = () => {
                 </Link>
               </ListItem>
               <ListItem>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
+                <Link href="/contact" color="gray.400" _hover={{ color: "white" }}>
                   Contact
                 </Link>
               </ListItem>

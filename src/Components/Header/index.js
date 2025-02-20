@@ -32,11 +32,11 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <Flex as="nav" gap={8} display={{ base: "none", md: "flex" }}>
+            <Link href="/" color="gray.700" _hover={{ color: "blue.600" }}>
+              Home
+            </Link>
             <Link href="/about" color="gray.700" _hover={{ color: "blue.600" }}>
               About
-            </Link>
-            <Link href="#" color="gray.700" _hover={{ color: "blue.600" }}>
-              Projects
             </Link>
             <Link href="/programs" color="gray.700" _hover={{ color: "blue.600" }}>
               Programs
@@ -44,7 +44,7 @@ const Header = () => {
             <Link href="/impact" color="gray.700" _hover={{ color: "blue.600" }}>
               Impact
             </Link>
-            <Link href="#" color="gray.700" _hover={{ color: "blue.600" }}>
+            <Link href="/contact" color="gray.700" _hover={{ color: "blue.600" }}>
               Contact
             </Link>
              <Link href="/donate" color="gray.700" _hover={{ color: "blue.600" }}>
@@ -62,11 +62,11 @@ const Header = () => {
         <Collapse in={isOpen} animateOpacity>
           <Box bg="white" shadow="md" p={4} display={{ md: "none" }}>
             <VStack spacing={4} align="stretch">
+              <Link href="/" color="gray.700" _hover={{ color: "blue.600" }} onClick={onToggle}>
+                Home
+              </Link>
               <Link href="/about" color="gray.700" _hover={{ color: "blue.600" }} onClick={onToggle}>
                 About
-              </Link>
-              <Link href="#" color="gray.700" _hover={{ color: "blue.600" }} onClick={onToggle}>
-                Projects
               </Link>
               <Link href="/programs" color="gray.700" _hover={{ color: "blue.600" }} onClick={onToggle}>
                 Programs
@@ -74,15 +74,14 @@ const Header = () => {
               <Link href="/impact" color="gray.700" _hover={{ color: "blue.600" }} onClick={onToggle}>
                 Impact
               </Link>
-              <Link href="/donate" color="gray.700" _hover={{ color: "blue.600" }} onClick={onToggle}>
-                Volunteer
-              </Link>
-              <Link href="#" color="gray.700" _hover={{ color: "blue.600" }} onClick={onToggle}>
+              <Link href="/contact" color="gray.700" _hover={{ color: "blue.600" }} onClick={onToggle}>
                 Contact
               </Link>
-              <Button colorScheme="blue" w="full" onClick={onToggle}>
-                Donate Now
-              </Button>
+              <Link href="/donate" color="gray.700" _hover={{ color: "blue.600" }} onClick={onToggle}>
+                <Button colorScheme="blue" w="full" onClick={onToggle}>
+                  Donate Now
+                </Button>
+              </Link>
             </VStack>
           </Box>
         </Collapse>

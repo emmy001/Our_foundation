@@ -309,7 +309,7 @@ const About = () => {
       </Box>
 
       {/* Call to Action */}
-      <Box py={20} bg="rose.500">
+      <Box py={20} bg="blue.800">
         <Box maxW="7xl" mx="auto" px={4} textAlign="center">
           <Heading as="h2" fontSize="3xl" fontWeight="bold" color="white" mb={6}>
             Join Us in Making a Difference
@@ -319,19 +319,10 @@ const About = () => {
             communities worldwide.
           </Text>
           <Flex justify="center" gap={4}>
-            <Button colorScheme="white" color="rose.500" px={8} py={3} fontSize="lg" fontWeight="bold">
+            <Button color="white"  px={8} py={3} fontSize="lg"  variant="outline" borderColor="white" fontWeight="bold" _hover={{ bg: "blue.500" }}>
               Get Involved
             </Button>
-            <Button
-              variant="outline"
-              color="white"
-              borderColor="white"
-              px={8}
-              py={3}
-              fontSize="lg"
-              fontWeight="bold"
-              _hover={{ bg: "whiteAlpha.100" }}
-            >
+            <Button variant="outline" color="white" borderColor="white" px={8} py={3} fontSize="lg" fontWeight="bold" _hover={{ bg: "whiteAlpha.100" }}>
               Donate Now
             </Button>
           </Flex>

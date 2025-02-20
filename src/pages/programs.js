@@ -314,15 +314,15 @@ const Programs = () => {
       </Box>
 
       {/* Donation Section */}
-      <Box bg="blue.800" py={20} color="black">
+      <Box bg="blue.800" py={20} >
         <Box maxW="7xl" mx="auto" px={6} textAlign="center">
-          <Heading as="h2" fontSize="3xl" fontWeight="bold" mb={6}>
+          <Heading as="h2" fontSize="3xl" fontWeight="bold" mb={6} color="white">
             Make a Difference Today
           </Heading>
-          <Text fontSize="xl" mb={12} maxW="2xl" mx="auto">
+          <Text fontSize="xl" mb={12} maxW="2xl" mx="auto" color="white">
             Your donation helps us continue our mission of empowering communities and creating lasting change.
           </Text>
-          <Grid templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }} gap={4} maxW="2xl" mx="auto" mb={8}>
+          <Grid templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }} gap={4} maxW="2xl" mx="auto" mb={8} color="black">
             {["$25", "$50", "$100", "$200"].map((amount, index) => (
               <Button key={index} bg="white" color="rose.600" _hover={{ bg: "gray.100" }}>
                 {amount}
@@ -336,81 +336,7 @@ const Programs = () => {
       </Box>
 
       {/* Footer */}
-      <Box as="footer" bg="gray.900" color="white" py={16}>
-        <Box maxW="7xl" mx="auto" px={4}>
-          <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={12}>
-            <Box>
-              <Heading as="h3" fontSize="xl" fontWeight="bold" mb={4}>
-                GlobalHope Foundation
-              </Heading>
-              <Text color="gray.400">
-                Making a difference in communities worldwide through sustainable
-                development and empowerment initiatives.
-              </Text>
-            </Box>
-            <Box>
-              <Heading as="h4" fontSize="lg" fontWeight="bold" mb={4}>
-                Quick Links
-              </Heading>
-              <List spacing={2}>
-                <ListItem>
-                  <Link href="/about" color="gray.400" _hover={{ color: "white" }}>
-                    About Us
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Our Projects
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Get Involved
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Contact
-                  </Link>
-                </ListItem>
-              </List>
-            </Box>
-            <Box>
-              <Heading as="h4" fontSize="lg" fontWeight="bold" mb={4}>
-                Contact Us
-              </Heading>
-              <List spacing={2} color="gray.400">
-                <ListItem>123 Hope Street</ListItem>
-                <ListItem>New York, NY 10001</ListItem>
-                <ListItem>contact@globalhope.org</ListItem>
-                <ListItem>+1 (555) 123-4567</ListItem>
-              </List>
-            </Box>
-            <Box>
-              <Heading as="h4" fontSize="lg" fontWeight="bold" mb={4}>
-                Follow Us
-              </Heading>
-              <Flex gap={4}>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaFacebook} fontSize="xl" />
-                </Link>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaTwitter} fontSize="xl" />
-                </Link>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaInstagram} fontSize="xl" />
-                </Link>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaLinkedin} fontSize="xl" />
-                </Link>
-              </Flex>
-            </Box>
-          </Grid>
-          <Box borderTop="1px" borderColor="gray.800" mt={12} pt={8} textAlign="center" color="gray.400">
-            <Text>&copy; 2024 GlobalHope Foundation. All rights reserved.</Text>
-          </Box>
-        </Box>
-      </Box>
+      <Footer/>
 
       {/* Floating Donate Button */}
       <Button

@@ -6,6 +6,7 @@ import About from "./pages/about";
 import Donate from "./pages/donate";
 import Impact from "./pages/impact";
 import Programs from "./pages/programs";
+import Contact from "./pages/contact";
 
 function App(){
   return (
@@ -18,6 +19,7 @@ function App(){
         <Route path="/donate" element={<Donate />} />
         <Route path="/impact" element={<Impact />} />
         <Route path="/programs" element={<Programs />} />
+        <Route path="/contact" element={<Contact />} />
 
       </Routes>
     </Router>
