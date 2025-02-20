@@ -72,30 +72,31 @@ const Home = () => {
           bgGradient="linear(to-r, blue.900/80, transparent)"
         />
         <Box
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translate(-50%, -50%)"
-          maxW="2xl"
-          textAlign="center"
-          color="white"
-        >
-          <Heading as="h2" fontSize="5xl" fontWeight="bold" mb={6}>
-            Empowering Communities, Transforming Lives
-          </Heading>
-          <Text fontSize="xl" mb={8}>
-            Join us in creating lasting change through sustainable development
-            and community empowerment initiatives worldwide.
-          </Text>
-          <Flex justify="center" gap={4}>
-            <Button colorScheme="blue" size="lg">
-              Make a Donation
-            </Button>
-            <Button variant="outline" color="white" size="lg" _hover={{ bg: "white", color: "blue.900" }}>
-              Learn More
-            </Button>
-          </Flex>
-        </Box>
+        position="absolute"
+        top="50%"
+        left="10%"
+        transform="translateY(-50%)"
+        maxW="2xl"
+        textAlign="left"
+        color="white"
+      >
+        <Heading as="h2" fontSize="5xl" fontWeight="bold" mb={6}>
+          Empowering Communities, Transforming Lives
+        </Heading>
+        <Text fontSize="xl" mb={8}>
+          Join us in creating lasting change through sustainable development
+          and community empowerment initiatives worldwide.
+        </Text>
+        <Flex gap={4}>
+          <Button colorScheme="blue" size="lg">
+            Make a Donation
+          </Button>
+          <Button variant="outline" color="black" size="lg" _hover={{ bg: "white", color: "blue.900" }}>
+            Learn More
+          </Button>
+        </Flex>
+      </Box>
+
       </Box>
 
 
@@ -104,10 +105,10 @@ const Home = () => {
         <Box maxW="7xl" mx="auto" px={4}>
           <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={8}>
             {[
-              { number: "2.5M+", label: "Lives Impacted" },
-              { number: "150+", label: "Active Projects" },
-              { number: "45", label: "Countries Reached" },
-              { number: "100K+", label: "Regular Donors" },
+              { number: "250+", label: "Lives Impacted" },
+              { number: "10+", label: "Active Projects" },
+              { number: "5", label: "Countries Reached" },
+              { number: "13+", label: "Regular Donors" },
             ].map((stat, index) => (
               <Box key={index} textAlign="center">
                 <Heading as="h3" fontSize="4xl" fontWeight="bold" color="blue.600" mb={2}>
