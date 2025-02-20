@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import { Box, Flex, Heading, Text, Image, Button, Grid, GridItem, Link, List, ListItem, Input, Icon, useBreakpointValue, Progress, useColorModeValue } from "@chakra-ui/react";
 import { FaHeart, FaGraduationCap, FaHospital, FaUtensils, FaBuilding, FaBars, FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import Footer from "../Components/Footer";
+import Header from "../Components/Header";
 
 const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,47 +54,7 @@ const Home = () => {
   return (
     <Box minH="100vh">
       {/* Header */}
-      <Box
-        as="header"
-        position="fixed"
-        w="full"
-        zIndex={50}
-        transition="all 0.3s"
-        bg={isScrolled ? "white" : "transparent"}
-        boxShadow={isScrolled ? "md" : "none"}
-      >
-        <Box maxW="7xl" mx="auto" px={4} py={4}>
-          <Flex align="center" justify="space-between">
-            <Heading fontSize="2xl" fontWeight="bold" color="blue.600">
-              GlobalHope Foundation
-            </Heading>
-            <Flex as="nav" gap={8} display={{ base: "none", md: "flex" }}>
-              <Link href="/about" color="gray.700" _hover={{ color: "blue.600" }}>
-                About
-              </Link>
-              <Link href="#" color="gray.700" _hover={{ color: "blue.600" }}>
-                Projects
-              </Link>
-              <Link href="/programs" color="gray.700" _hover={{ color: "blue.600" }}>
-                Programs
-              </Link>
-               <Link href="/impact" color="gray.700" _hover={{ color: "blue.600" }}>
-                Impact
-              </Link>
-              <Link href="/donate" color="gray.700" _hover={{ color: "blue.600" }}>
-                Volunteer
-              </Link>
-              <Link href="#" color="gray.700" _hover={{ color: "blue.600" }}>
-                Contact
-              </Link>
-              <Button colorScheme="blue">Donate Now</Button>
-            </Flex>
-            <Button display={{ base: "block", md: "none" }} variant="ghost">
-              <Icon as={FaBars} fontSize="2xl" />
-            </Button>
-          </Flex>
-        </Box>
-      </Box>
+      <Header/>
 
       {/* Hero Section */}
       <Box position="relative" h="100vh">
@@ -110,33 +72,32 @@ const Home = () => {
           bgGradient="linear(to-r, blue.900/80, transparent)"
         />
         <Box
-          position="relative"
-          maxW="7xl"
-          mx="auto"
-          px={4}
-          h="full"
-          display="flex"
-          alignItems="center"
+          position="absolute"
+          top="50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          maxW="2xl"
+          textAlign="center"
+          color="white"
         >
-          <Box maxW="2xl" color="white">
-            <Heading as="h2" fontSize="5xl" fontWeight="bold" mb={6}>
-              Empowering Communities, Transforming Lives
-            </Heading>
-            <Text fontSize="xl" mb={8}>
-              Join us in creating lasting change through sustainable development
-              and community empowerment initiatives worldwide.
-            </Text>
-            <Flex gap={4}>
-              <Button colorScheme="blue" size="lg">
-                Make a Donation
-              </Button>
-              <Button variant="outline" color="white" size="lg" _hover={{ bg: "white", color: "blue.900" }}>
-                Learn More
-              </Button>
-            </Flex>
-          </Box>
+          <Heading as="h2" fontSize="5xl" fontWeight="bold" mb={6}>
+            Empowering Communities, Transforming Lives
+          </Heading>
+          <Text fontSize="xl" mb={8}>
+            Join us in creating lasting change through sustainable development
+            and community empowerment initiatives worldwide.
+          </Text>
+          <Flex justify="center" gap={4}>
+            <Button colorScheme="blue" size="lg">
+              Make a Donation
+            </Button>
+            <Button variant="outline" color="white" size="lg" _hover={{ bg: "white", color: "blue.900" }}>
+              Learn More
+            </Button>
+          </Flex>
         </Box>
       </Box>
+
 
       {/* Donate Stats */}
       <Box py={16} bg="gray.50">
@@ -211,46 +172,50 @@ const Home = () => {
         </Box>
       </Box>
 
-      {/* Donation Donate */}
-      <Box py={16} bg="gray.50">
-        <Box maxW="7xl" mx="auto" px={4}>
-          <Heading as="h2" fontSize="3xl" fontWeight="bold" textAlign="center" mb={12}>
-            Your Donation Impact
-          </Heading>
-          <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={8} alignItems="center">
-            <Box ref={chartRef} h="400px" />
-            <Box>
-              <Heading as="h3" fontSize="2xl" fontWeight="bold" mb={4}>
-                How We Use Your Donations
-              </Heading>
-              <Text color="gray.600" mb={6}>
-                Your generous contributions directly support our mission to
-                create lasting positive change in communities worldwide. We
-                ensure transparent allocation of funds across various critical
-                sectors.
-              </Text>
-              <List spacing={4}>
-                <ListItem display="flex" alignItems="center">
-                  <Icon as={FaGraduationCap} color="blue.600" mr={3} />
-                  <Text>45% supports educational initiatives</Text>
-                </ListItem>
-                <ListItem display="flex" alignItems="center">
-                  <Icon as={FaHospital} color="blue.600" mr={3} />
-                  <Text>25% funds healthcare programs</Text>
-                </ListItem>
-                <ListItem display="flex" alignItems="center">
-                  <Icon as={FaUtensils} color="blue.600" mr={3} />
-                  <Text>20% ensures food security</Text>
-                </ListItem>
-                <ListItem display="flex" alignItems="center">
-                  <Icon as={FaBuilding} color="blue.600" mr={3} />
-                  <Text>10% develops infrastructure</Text>
-                </ListItem>
-              </List>
-            </Box>
-          </Grid>
-        </Box>
+      {/* Donation Impact Section */}
+<Box py={16} bg="gray.50">
+  <Box maxW="7xl" mx="auto" px={4}>
+    <Heading as="h2" fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" textAlign="center" mb={12}>
+      Your Donation Impact
+    </Heading>
+    <Grid
+      templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+      gap={8}
+      alignItems="center"
+      textAlign={{ base: "center", md: "left" }}
+    >
+      {/* Chart Placeholder */}
+      <Box ref={chartRef} h={{ base: "250px", md: "400px" }} />
+
+      {/* Donation Breakdown Text */}
+      <Box>
+        <Heading as="h3" fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" mb={4}>
+          How We Use Your Donations
+        </Heading>
+        <Text color="gray.600" mb={6} fontSize={{ base: "md", md: "lg" }}>
+          Your generous contributions directly support our mission to
+          create lasting positive change in communities worldwide. We
+          ensure transparent allocation of funds across various critical
+          sectors.
+        </Text>
+        <List spacing={4}>
+          {[
+            { icon: FaGraduationCap, text: "45% supports educational initiatives" },
+            { icon: FaHospital, text: "25% funds healthcare programs" },
+            { icon: FaUtensils, text: "20% ensures food security" },
+            { icon: FaBuilding, text: "10% develops infrastructure" },
+          ].map((item, index) => (
+            <ListItem key={index} display="flex" alignItems="center" justifyContent={{ base: "center", md: "start" }}>
+              <Icon as={item.icon} color="blue.600" mr={3} />
+              <Text fontSize={{ base: "md", md: "lg" }}>{item.text}</Text>
+            </ListItem>
+          ))}
+        </List>
       </Box>
+    </Grid>
+  </Box>
+</Box>
+
 
       {/* Newsletter */}
       <Box py={16}>
@@ -284,81 +249,7 @@ const Home = () => {
       </Box>
 
       {/* Footer */}
-      <Box as="footer" bg="gray.900" color="white" py={16}>
-        <Box maxW="7xl" mx="auto" px={4}>
-          <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={12}>
-            <Box>
-              <Heading as="h3" fontSize="xl" fontWeight="bold" mb={4}>
-                GlobalHope Foundation
-              </Heading>
-              <Text color="gray.400">
-                Making a difference in communities worldwide through sustainable
-                development and empowerment initiatives.
-              </Text>
-            </Box>
-            <Box>
-              <Heading as="h4" fontSize="lg" fontWeight="bold" mb={4}>
-                Quick Links
-              </Heading>
-              <List spacing={2}>
-                <ListItem>
-                  <Link href="/about" color="gray.400" _hover={{ color: "white" }}>
-                    About Us
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Our Projects
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Get Involved
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Contact
-                  </Link>
-                </ListItem>
-              </List>
-            </Box>
-            <Box>
-              <Heading as="h4" fontSize="lg" fontWeight="bold" mb={4}>
-                Contact Us
-              </Heading>
-              <List spacing={2} color="gray.400">
-                <ListItem>123 Hope Street</ListItem>
-                <ListItem>New York, NY 10001</ListItem>
-                <ListItem>contact@globalhope.org</ListItem>
-                <ListItem>+1 (555) 123-4567</ListItem>
-              </List>
-            </Box>
-            <Box>
-              <Heading as="h4" fontSize="lg" fontWeight="bold" mb={4}>
-                Follow Us
-              </Heading>
-              <Flex gap={4}>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaFacebook} fontSize="xl" />
-                </Link>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaTwitter} fontSize="xl" />
-                </Link>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaInstagram} fontSize="xl" />
-                </Link>
-                <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                  <Icon as={FaLinkedin} fontSize="xl" />
-                </Link>
-              </Flex>
-            </Box>
-          </Grid>
-          <Box borderTop="1px" borderColor="gray.800" mt={12} pt={8} textAlign="center" color="gray.400">
-            <Text>&copy; 2024 GlobalHope Foundation. All rights reserved.</Text>
-          </Box>
-        </Box>
-      </Box>
+      <Footer/>
 
       {/* Floating Donate Button */}
       <Button
