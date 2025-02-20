@@ -34,6 +34,8 @@ import {
 } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/pagination";
+import Footer from "../Components/Footer";
+import Header from "../Components/Header";
 
 const Impact = () => {
   const chartRef = useRef(null);
@@ -122,6 +124,7 @@ const Impact = () => {
 
   return (
     <Box minH="100vh" bg="white">
+      <Header/>
       {/* Hero Section */}
       <Box position="relative" h="600px" overflow="hidden">
         <Image

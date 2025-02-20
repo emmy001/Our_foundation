@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Box, Flex, Heading, Text, Image, Button, Grid, GridItem, Link, List, ListItem, Input, Icon, useBreakpointValue,} from "@chakra-ui/react";
 import { FaHeart, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
+import Header from "../Components/Header";
 
 const About = () => {
   const chartRef = useRef(null);
@@ -134,36 +135,10 @@ const About = () => {
   return (
     <Box minH="100vh" bg="white">
       {/* Header */}
-      <Box as="header" position="fixed" top={0} w="full" bg="white" boxShadow="md" zIndex={50}>
-        <Flex maxW="7xl" mx="auto" px={4} h={20} align="center" justify="space-between">
-          <Flex align="center" gap={2}>
-            <Icon as={FaHeart} color="rose.500" fontSize="3xl" />
-            <Heading fontSize="2xl" fontWeight="bold" color="gray.800">
-              Hope Foundation
-            </Heading>
-          </Flex>
-          <Flex as="nav" gap={8} display={{ base: "none", md: "flex" }}>
-            <Link href="/" color="gray.600" _hover={{ color: "rose.500" }}>
-              Home
-            </Link>
-            <Link href="about" color="rose.500">
-              About
-            </Link>
-            <Link href="/programs" color="gray.600" _hover={{ color: "rose.500" }}>
-              Programs
-            </Link>
-            <Link href="/impact" color="gray.600" _hover={{ color: "rose.500" }}>
-              Impact
-            </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
-              Contact
-            </Link>
-          </Flex>
-          <Button href="/donate" colorScheme="rose" px={6} py={2}>
-            Donate Now
-          </Button>
-        </Flex>
-      </Box>
+      {/*<Box as="header" position="fixed" top={0} w="full" bg="white" boxShadow="md" zIndex={50}>*/}
+
+      {/*</Box>*/}
+      <Header/>
 
       {/* Hero Section */}
       <Box

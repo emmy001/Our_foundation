@@ -3,6 +3,8 @@ import * as echarts from "echarts";
 import { Box, Flex, Heading, Text, Button, Grid, GridItem, Input, InputGroup, Link, InputLeftElement, Radio, RadioGroup, Stack, List, ListItem, Icon, useColorModeValue,
 } from "@chakra-ui/react";
 import { FaHeart, FaUtensils, FaBook, FaPaypal, FaGooglePay, FaCreditCard, FaHospital, FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
 const Donate = () => {
   const [selectedAmount, setSelectedAmount] = useState(25);
@@ -71,32 +73,8 @@ const Donate = () => {
 
   return (
     <Box minH="100vh" bg="gray.50">
-      {/* Header */}
-      <Box as="header" position="fixed" top={0} w="full" bg="white" boxShadow="md" zIndex={50}>
-        <Box maxW="7xl" mx="auto" px={4} h={20} display="flex" alignItems="center" justifyContent="space-between">
-          <Flex align="center" gap={2}>
-            <Icon as={FaHeart} fontSize="3xl" color="rose.500" />
-            <Heading fontSize="2xl" fontWeight="bold" color="gray.800">
-              GlobalHope
-            </Heading>
-          </Flex>
-          <Flex as="nav" gap={8} display={{ base: "none", md: "flex" }}>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
-              About
-            </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
-              Programs
-            </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
-              Impact
-            </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "rose.500" }}>
-              Contact
-            </Link>
-            <Button colorScheme="rose">Donate Now</Button>
-          </Flex>
-        </Box>
-      </Box>
+
+      <Header/>
 
       {/* Hero Section */}
       <Box pt={20}>
@@ -140,13 +118,18 @@ const Donate = () => {
                 onClick={() => handleAmountSelect(amount)}
                 variant="outline"
                 p={6}
+                h="32" // Increased height
                 textAlign="center"
                 borderWidth={2}
                 borderColor={selectedAmount === amount ? "rose.500" : "gray.200"}
                 bg={selectedAmount === amount ? "rose.50" : "white"}
                 _hover={{ borderColor: "rose.300" }}
+                display="flex" // Ensures content layout
+                flexDirection="column"
+                justifyContent="center" // Centers vertically
+                alignItems="center" // Centers horizontally
               >
-                <Box>
+                <Box textAlign="center">
                   <Text fontSize="2xl" fontWeight="bold" mb={2}>
                     ${amount}
                   </Text>
@@ -160,6 +143,7 @@ const Donate = () => {
               </Button>
             ))}
           </Grid>
+
           <Flex justify="center" mb={8}>
             <InputGroup maxW="64">
               <InputLeftElement pointerEvents="none" color="gray.500">

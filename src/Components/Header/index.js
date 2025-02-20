@@ -44,13 +44,12 @@ const Header = () => {
             <Link href="/impact" color="gray.700" _hover={{ color: "blue.600" }}>
               Impact
             </Link>
-            <Link href="/donate" color="gray.700" _hover={{ color: "blue.600" }}>
-              Volunteer
-            </Link>
             <Link href="#" color="gray.700" _hover={{ color: "blue.600" }}>
               Contact
             </Link>
+             <Link href="/donate" color="gray.700" _hover={{ color: "blue.600" }}>
             <Button colorScheme="blue">Donate Now</Button>
+            </Link>
           </Flex>
 
           {/* Mobile Menu Button */}
