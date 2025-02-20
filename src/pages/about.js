@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import { Box, Flex, Heading, Text, Image, Button, Grid, GridItem, Link, List, ListItem, Input, Icon, useBreakpointValue,} from "@chakra-ui/react";
 import { FaHeart, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
 const About = () => {
   const chartRef = useRef(null);
@@ -338,103 +339,7 @@ const About = () => {
       </Box>
 
       {/* Footer */}
-      <Box as="footer" bg="gray.800" color="white" py={12}>
-        <Box maxW="7xl" mx="auto" px={4}>
-          <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={8}>
-            <Box>
-              <Flex align="center" gap={2} mb={6}>
-                <Icon as={FaHeart} color="rose.500" fontSize="3xl" />
-                <Heading fontSize="2xl" fontWeight="bold">
-                  Hope Foundation
-                </Heading>
-              </Flex>
-              <Text color="gray.400">
-                Making a difference in communities worldwide through sustainable development and
-                empowerment.
-              </Text>
-            </Box>
-            <Box>
-              <Heading as="h3" fontSize="lg" fontWeight="bold" mb={4}>
-                Quick Links
-              </Heading>
-              <List spacing={2}>
-                <ListItem>
-                  <Link href="/about" color="gray.400" _hover={{ color: "white" }}>
-                    About Us
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="/programs" color="gray.400" _hover={{ color: "white" }}>
-                    Programs
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Get Involved
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link href="#" color="gray.400" _hover={{ color: "white" }}>
-                    Contact
-                  </Link>
-                </ListItem>
-              </List>
-            </Box>
-            <Box>
-              <Heading as="h3" fontSize="lg" fontWeight="bold" mb={4}>
-                Contact Us
-              </Heading>
-              <List spacing={2} color="gray.400">
-                <ListItem>
-                  <Icon as={FaMapMarkerAlt} mr={2} />
-                  123 Hope Street, New York, NY 10001
-                </ListItem>
-                <ListItem>
-                  <Icon as={FaPhone} mr={2} />
-                  +1 (555) 123-4567
-                </ListItem>
-                <ListItem>
-                  <Icon as={FaEnvelope} mr={2} />
-                  info@hopefoundation.org
-                </ListItem>
-              </List>
-            </Box>
-            <Box>
-              <Heading as="h3" fontSize="lg" fontWeight="bold" mb={4}>
-                Newsletter
-              </Heading>
-              <Text color="gray.400" mb={4}>
-                Stay updated with our latest news and updates.
-              </Text>
-              <Flex>
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  bg="gray.700"
-                  color="white"
-                  px={4}
-                  py={2}
-                  borderTopLeftRadius="md"
-                  borderBottomLeftRadius="md"
-                  _focus={{ outline: "none" }}
-                />
-                <Button
-                  colorScheme="rose"
-                  px={4}
-                  py={2}
-                  borderTopRightRadius="md"
-                  borderBottomRightRadius="md"
-                >
-                  Subscribe
-                </Button>
-              </Flex>
-            </Box>
-          </Grid>
-          <Box borderTop="1px" borderColor="gray.700" mt={8} pt={8} textAlign="center" color="gray.400">
-            <Text>&copy; 2024 Hope Foundation. All rights reserved.</Text>
-          </Box>
-        </Box>
-      </Box>
+      <Footer/>
     </Box>
   );
 };

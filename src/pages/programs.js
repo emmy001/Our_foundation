@@ -34,6 +34,8 @@ import {
 } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/pagination";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
 const Programs = () => {
   const chartRef = useRef(null);
@@ -69,32 +71,7 @@ const Programs = () => {
 
   return (
     <Box minH="100vh" bg="white">
-      {/* Header */}
-      <Box as="header" position="fixed" top={0} left={0} right={0} bg="white" boxShadow="md" zIndex={50}>
-        <Box maxW="7xl" mx="auto" px={6} h={20} display="flex" alignItems="center" justifyContent="space-between">
-          <Flex align="center" gap={2}>
-            <Icon as={FaHeart} fontSize="2xl" color="rose.600" />
-            <Heading fontSize="2xl" fontWeight="semibold" color="gray.800">
-              GlobalCare Foundation
-            </Heading>
-          </Flex>
-          <Flex as="nav" gap={8} display={{ base: "none", md: "flex" }}>
-            <Link href="/" color="gray.600" _hover={{ color: "gray.800" }}>
-              Home
-            </Link>
-            <Link href="/programs" color="rose.600" fontWeight="medium">
-              Programs
-            </Link>
-            <Link href="/about" color="gray.600" _hover={{ color: "gray.800" }}>
-              About
-            </Link>
-            <Link href="#" color="gray.600" _hover={{ color: "gray.800" }}>
-              Contact
-            </Link>
-            <Button href="/donate" colorScheme="rose">Donate Now</Button>
-          </Flex>
-        </Box>
-      </Box>
+      <Header/>
 
       {/* Hero Section */}
       <Box pt={20} position="relative" overflow="hidden">
@@ -337,7 +314,7 @@ const Programs = () => {
       </Box>
 
       {/* Donation Section */}
-      <Box bg="rose.600" py={20} color="white">
+      <Box bg="blue.800" py={20} color="black">
         <Box maxW="7xl" mx="auto" px={6} textAlign="center">
           <Heading as="h2" fontSize="3xl" fontWeight="bold" mb={6}>
             Make a Difference Today
