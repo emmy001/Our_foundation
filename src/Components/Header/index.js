@@ -27,7 +27,7 @@ const Header = () => {
       <Box maxW="7xl" mx="auto" px={4} py={4}>
         <Flex align="center" justify="space-between">
           <Heading fontSize="2xl" fontWeight="bold" color="blue.600">
-            GlobalHope Foundation
+            Yuorober Foundation
           </Heading>
 
           {/* Desktop Navigation */}
